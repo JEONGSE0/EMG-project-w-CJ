@@ -76,22 +76,12 @@ $ ros2 launch emg_device emg_full_pipeline_launch.py
 1. Connect to the EMG device
 - Scan for the EMG device → connect
 ``` bash
-'''
-- command
-1~0: keyboard control
-e: emg mode on/off
-'''
 $ ros2 launch emg_device_left emg_signal_launch.py
 ```
 
 2. Full pipeline: EMG connection + classification + robot control (Isaac Sim) ⭐️
 - Scan for the EMG device → connect → wait 10s → start classification
 ``` bash
-'''
-- command
-1~0: keyboard control
-e: emg mode on/off
-'''
 $ ros2 launch emg_device_left emg_full_pipeline_launch.py 
 ```
 <br/>
@@ -103,11 +93,21 @@ $ ros2 launch emg_device_left emg_full_pipeline_launch.py
 #### - ROS2 Run Files
 - Right-hand control
 ``` bash
+'''
+- command
+1~0: keyboard control
+e: emg mode on/off
+'''
 $ ros2 run emg_shadow_hand_bridge shadow_hand_gesture_control
 ```
 
 - Left-hand control
 ``` bash
+'''
+- command
+1~0: keyboard control
+e: emg mode on/off
+'''
 $ ros2 run emg_shadow_hand_bridge shadow_hand_gesture_control_left
 ```
 ![alt text](image-2.png)
