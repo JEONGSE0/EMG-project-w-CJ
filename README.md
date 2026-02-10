@@ -1,7 +1,7 @@
 # EMG project w/CJ
-Robot Control Based on EMG Signals in the Isaac Sim Environment
+Robot Control Based on EMG Signals in the Isaac Sim Environment 🤖
 
-### Default Setup
+### Default Setup 🚀
 #### 1. Conda Environment
 Environment name: 'test'
 
@@ -19,7 +19,7 @@ $ source /opt/ros/jazzy/setup.bash
 $ colcon build
 $ source install/setup.bash
 ```
-### Isaac sim Setup
+### Isaac sim Setup 🦾
 #### 1. Conda Environment
 Environment name: 'env_isaacsim'
 ``` bash
@@ -34,4 +34,14 @@ or
 $ ./isaac-sim.sh
 ```
 
+
+### Package Description 🧑‍💻
+#### 1. emg_connect
+- Connects to the EMG device and retrieves EMG signals
+- Developed by CJ 🥸
+- Run Python File
+: main_gui.py
+![alt text](image.png)
+
+#### 2. emg_device
 
