@@ -200,7 +200,7 @@ e-mail: tj6774@gmail.com
 
 - Repair Engineer 2  
 Cheoljeong Park 🦦  
-e-mail: pffiro@gmail.com
+e-mail: cheoljeongpark@gmail.com
 
 - Tonkatsu Hammer & Repair Enginee 3   
 Gyuwon Kim 🥩🔨  
