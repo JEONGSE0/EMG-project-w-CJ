@@ -63,7 +63,8 @@ $ ros2 launch emg_device emg_signal_launch.py
 2. Full pipeline: EMG connection + classification + robot control (Isaac Sim) ⭐️
 - Scan for the EMG device → connect → wait 10s → start classification
 ``` bash
-$ ros2 launch emg_device emg_full_pipeline_launch.py 
+$ ros2 launch emg_device emg_full_pipeline_launch.py/
+name_filter:=<your device name>
 ```
 <br/>
 
@@ -82,7 +83,8 @@ $ ros2 launch emg_device_left emg_signal_launch.py
 2. Full pipeline: EMG connection + classification + robot control (Isaac Sim) ⭐️
 - Scan for the EMG device → connect → wait 10s → start classification
 ``` bash
-$ ros2 launch emg_device_left emg_full_pipeline_launch.py 
+$ ros2 launch emg_device_left emg_full_pipeline_launch.py/
+name_filter:=<your device name>
 ```
 <br/>
 
