@@ -189,7 +189,7 @@ $ python -m emg_system_gui.emg_system_gui
 
 ### 2. Integrated EMG + IMU GUI
 
-``` bash
+``` 
 짜잔~ 아직이지롱
 
 GT━━━┓
