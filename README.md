@@ -173,6 +173,58 @@ $ ros2 run so101 so101_real_control_right
 ```
 ![alt text](image-1.png)
 
+<br/>
+
+## ✨ NEW ✨  Control GUI
+
+### 1. EMG GUI
+
+``` bash
+$ conda activate test
+
+$ cd ros2_ws/src/emg_system_gui
+$ python -m emg_system_gui.emg_system_gui
+```
+<video controls src="HRI_control_dashboard.mp4" title="Title"></video>
+
+### 2. Integrated EMG + IMU GUI
+
+``` bash
+짜잔~ 아직이지롱
+
+GT━━━┓
+┓┓┓┓┓┃/ . `
+┓┓┓┓┓ : .＼○ノ (와장창)
+┓┓┓┓┓┃ ` / 　　 돔황
+┓┓┓┓┓┃ `ノ) . `
+┓┓┓┓┓┃ ,
+┓┓┓┓┓┃　　　 　○
+┓┓┓┓┓┃　　　 　人 (사뿐)
+┓┓┓┓┓┃　　 　　/)
+┓┓┓┓┓┃　 ┎━━━━━━┒
+┓┓┓┓┓┃ 　┃┏┓┏┓┏┓┃ 　 ○
+┓┓┓┓┓┃　 ┃┗┛┗┛┗┛┃ 　 人
+┓┓┓┓┓┃　 ┃┏┓┏┓┏┓┃ ../) (총총총)
+```
+
+![alt text](image-3.png)
+
+<br/>
+
+-----
+
+To. Gyuwon 🔨📬
+
+I wrote the code based on the username “meow,” so you might run into an error. <br/>
+If that happens, just modify the config.py file inside the emg_system_gui folder. <br/>
+You’ll see a path like /home/meow/ros2_ws/... — just change “meow” to “gkim451.” <br/>
+If it still doesn’t work, haha, feel free to reach out! <br/>
+<br/>
+If you have any other questions, feel free to email me anytime ~!~!~! 😎
+
+-----
+<br/>
+
 ## System Workflow
 
 ### Shadow Hand Control
@@ -190,7 +242,6 @@ $ ros2 run so101 so101_real_control_right
 3. Start Isaac Sim and click **Play**.
 4. Run the `so101` node (connects Isaac Sim to the EMG device).
 5. Run the `so101_real_control` node (controls the real robot).
-
 
 <br/>
 
