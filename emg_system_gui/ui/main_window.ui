@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1282</width>
+    <height>692</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>URW Gothic [urw]</family>
+    <pointsize>12</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>HRI control dashboard</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>URW Gothic [urw]</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QGroupBox" name="right_emg_device">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="title">
+        <string>Right EMG Device</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QPushButton" name="btn_connect_right_emg">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>80</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_disconnect_right_emg">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>30</y>
+          <width>80</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Disconnect</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_right_status">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>30</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>10</number>
+        </property>
+        <property name="midLineWidth">
+         <number>10</number>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_right_gesture">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>30</y>
+          <width>281</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+          <strikeout>false</strikeout>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>10</number>
+        </property>
+        <property name="midLineWidth">
+         <number>10</number>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch1" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>ForbiddenCursor</cursorShape>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch2" native="true">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch3" native="true">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch4" native="true">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch5" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch6" native="true">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch7" native="true">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_right_ch8" native="true">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>0</y>
+      <width>641</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QGroupBox" name="left_emg_device">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>Left EMG Device</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QPushButton" name="btn_connect_left_emg">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>80</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_disconnect_left_emg">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>30</y>
+          <width>80</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Disconnect</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch1" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch2" native="true">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch3" native="true">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch4" native="true">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>70</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch5" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch6" native="true">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch7" native="true">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QWidget" name="widget_left_ch8" native="true">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>220</y>
+          <width>141</width>
+          <height>131</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_left_status">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>30</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_left_gesture">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>30</y>
+          <width>281</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>370</y>
+      <width>641</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QGroupBox" name="shadow_hand_right">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>Shadow hand (Right)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QPushButton" name="btn_shadow_right_on">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>291</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Control the shadow hand</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_shadow_right_off">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>40</y>
+          <width>291</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Disconnect</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>460</y>
+      <width>641</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QGroupBox" name="so101_right">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>SO-101 (Right)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>391</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>     in Isaac Sim</string>
+        </property>
+        <widget class="QPushButton" name="btn_so101_sim_right_off">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>40</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Disconnect</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>110</y>
+          <width>391</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>     In real world</string>
+        </property>
+        <widget class="QPushButton" name="btn_so101_real_right_on">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>40</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Control SO-101 in real world</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_so101_real_right_off">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>40</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Disconnect</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_speed_right">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>80</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>50</y>
+          <width>121</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="text">
+         <string>Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_speed_up_right">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>60</y>
+          <width>61</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>UP</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_speed_down_right">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>90</y>
+          <width>61</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>DOWN</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_so101_sim_right_on">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Control SO-101 in Isaac Sim</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_reset_right">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>140</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Default Pose</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>370</y>
+      <width>641</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QGroupBox" name="shadow_hand_left">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>Shadow hand (Left)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QPushButton" name="btn_shadow_left_off">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>40</y>
+          <width>291</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Disconnect</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_shadow_left_on">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>291</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Control the shadow hand</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>460</y>
+      <width>641</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QGroupBox" name="so101_right_2">
+       <property name="font">
+        <font>
+         <family>URW Gothic [urw]</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>SO-101 (Left)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <widget class="QGroupBox" name="groupBox_9">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>391</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>     in Isaac Sim</string>
+        </property>
+        <widget class="QPushButton" name="btn_so101_sim_left_off">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>40</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Disconnect</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="btn_so101_sim_left_on">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Control SO-101 in Isaac Sim</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_10">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>110</y>
+          <width>391</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>     In real world</string>
+        </property>
+        <widget class="QPushButton" name="btn_so101_real_left_on">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>40</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Control SO-101 in real world</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_so101_real_left_off">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>40</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>URW Gothic [urw]</family>
+           <pointsize>9</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Disconnect</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="btn_speed_up_left">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>60</y>
+          <width>61</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>UP</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_speed_down_left">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>90</y>
+          <width>61</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>DOWN</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_reset_left">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>140</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>URW Gothic [urw]</family>
+          <pointsize>9</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Default Pose</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_speed_left">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>80</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>50</y>
+          <width>121</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="text">
+         <string>Speed</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
