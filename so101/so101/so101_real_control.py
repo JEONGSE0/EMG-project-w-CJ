@@ -55,7 +55,7 @@ class JointStateToJson(Node):
 
         # ---- params ----
         self.declare_parameter("in_topic", "/so101/joint_states_left")
-        self.declare_parameter("out_path", "/home/gkim451/ros2_ws/src/so101/gkim/demo/cmd.json")
+        self.declare_parameter("out_path", "/home/meow/ros2_ws/src/so101/gkim451/demo/cmd.json")
         self.declare_parameter("write_hz", 30.0)
         self.declare_parameter("assume_deg", False)   # True: input is deg; False: input is rad -> convert to deg
         self.declare_parameter("missing_hold", True) # True: keep last value for missing keys

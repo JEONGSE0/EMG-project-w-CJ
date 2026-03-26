@@ -5,7 +5,7 @@ import threading
 import queue
 from typing import Dict, Optional
 
-from .config import ROS_SETUP, WS_SETUP, CONDA_ENV
+from .config import ROS_SETUP, WS_SETUP
 
 
 class ManagedProcess:
@@ -39,20 +39,25 @@ class ProcessManager:
     def __init__(self):
         self.processes: Dict[str, ManagedProcess] = {}
 
-    def _build_command(self, command: str) -> str:
+    def _build_command(self, spec: dict) -> str:
+        env_name = spec["env"]
+        cwd = spec["cwd"]
+        command = spec["command"]
+
         return (
             "source ~/anaconda3/etc/profile.d/conda.sh && "
-            f"conda activate {CONDA_ENV} && "
+            f"conda activate {env_name} && "
             f"{ROS_SETUP} && "
             f"{WS_SETUP} && "
+            f"cd {cwd} && "
             f"exec {command}"
         )
 
-    def start(self, name: str, command: str) -> str:
+    def start(self, name: str, spec: dict) -> str:
         if name in self.processes and self.processes[name].is_running():
             return f"[INFO] {name} is already running."
 
-        full_cmd = self._build_command(command)
+        full_cmd = self._build_command(spec)
 
         proc = subprocess.Popen(
             ["bash", "-ic", full_cmd],
@@ -60,7 +65,7 @@ class ProcessManager:
             stderr=subprocess.STDOUT,
             text=True,
             bufsize=1,
-            preexec_fn=os.setsid,   
+            preexec_fn=os.setsid,
         )
 
         self.processes[name] = ManagedProcess(name, proc)
@@ -78,29 +83,15 @@ class ProcessManager:
         try:
             pgid = os.getpgid(proc.pid)
             os.killpg(pgid, signal.SIGTERM)
+            try:
+                proc.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                os.killpg(pgid, signal.SIGKILL)
             return f"[STOP] {name}"
         except ProcessLookupError:
             return f"[INFO] {name} already exited."
         except Exception as e:
             return f"[ERROR] failed to stop {name}: {e}"
-
-    def force_kill(self, name: str) -> str:
-        mp: Optional[ManagedProcess] = self.processes.get(name)
-        if mp is None:
-            return f"[INFO] {name} is not running."
-
-        proc = mp.popen
-        if proc.poll() is not None:
-            return f"[INFO] {name} already exited."
-
-        try:
-            pgid = os.getpgid(proc.pid)
-            os.killpg(pgid, signal.SIGKILL)
-            return f"[KILL] {name}"
-        except ProcessLookupError:
-            return f"[INFO] {name} already exited."
-        except Exception as e:
-            return f"[ERROR] failed to kill {name}: {e}"
 
     def stop_all(self) -> str:
         msgs = []
@@ -115,11 +106,3 @@ class ProcessManager:
                 line = mp.log_queue.get_nowait()
                 logs.append(f"[{name}] {line}")
         return logs
-
-    def cleanup_exited(self):
-        dead = []
-        for name, mp in self.processes.items():
-            if not mp.is_running():
-                dead.append(name)
-        for name in dead:
-            pass

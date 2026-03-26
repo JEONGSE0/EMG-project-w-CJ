@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 EMG real-time classifier node
@@ -176,6 +176,7 @@ class EmgClassifierNode(Node):
         self.declare_parameter("gesture_conf_topic", "/emg/gesture_confidence")
         self.declare_parameter("publish_probs", False)
         self.declare_parameter("gesture_probs_topic", "/emg/gesture_probs")
+        self.declare_parameter("filtered_topic", "/emg/signal_filtered")
 
         # misc
         self.declare_parameter("qos_depth", 50)
@@ -194,6 +195,8 @@ class EmgClassifierNode(Node):
         self.pred_hop: int = int(self.get_parameter("pred_hop").value)
 
         self.warmup_sec: float = float(self.get_parameter("warmup_sec").value)
+        self.warmup_pub = self.create_publisher(Int32, '/emg/right/warmup_remaining', 10)
+        self._last_warmup_pub_sec: Optional[int] = None
 
         self.enable_filter: bool = bool(self.get_parameter("enable_filter").value)
 
@@ -208,6 +211,8 @@ class EmgClassifierNode(Node):
         self.gesture_conf_topic: str = str(self.get_parameter("gesture_conf_topic").value)
         self.publish_probs: bool = bool(self.get_parameter("publish_probs").value)
         self.gesture_probs_topic: str = str(self.get_parameter("gesture_probs_topic").value)
+        self.filtered_topic: str = str(self.get_parameter("filtered_topic").value)
+    
 
         qos_depth: int = int(self.get_parameter("qos_depth").value)
         self.debug: int = int(self.get_parameter("debug").value)
@@ -318,6 +323,7 @@ class EmgClassifierNode(Node):
             self.create_publisher(Float32MultiArray, self.gesture_probs_topic, qos)
             if self.publish_probs else None
         )
+        self.pub_filtered = self.create_publisher(Float32MultiArray, self.filtered_topic, qos)
 
         if self.debug >= 2:
             self.create_timer(1.0, self._summary_tick)
@@ -327,6 +333,12 @@ class EmgClassifierNode(Node):
             f"input={self.input_topic}, fs={self.fs}, window_size={self.window_size}, pred_hop={self.pred_hop}, "
             f"filter={self.enable_filter}, warmup_sec={self.warmup_sec}, debug={self.debug}, publish_probs={self.publish_probs}"
         )
+
+    # --- GUI WARM UP ---
+    def publish_warmup_remaining(self, sec: int) -> None:
+        msg = Int32()
+        msg.data = int(sec)
+        self.warmup_pub.publish(msg)
 
     # ---------------- Diagnostics ----------------
     def _summary_tick(self) -> None:
@@ -370,8 +382,13 @@ class EmgClassifierNode(Node):
                 except Exception:
                     pass
             self._decision.reset()
+            self._last_warmup_pub_sec = None
+            self.publish_warmup_remaining(int(np.ceil(self.warmup_sec)))
+
             if self.debug >= 1:
                 self.get_logger().info(f"[warmup] started (target {self.warmup_sec:.1f}s)")
+
+
 
         # optional filter: MUST pass shape (N, ch) not (ch,)
         if self.enable_filter and self._filter is not None:
@@ -385,6 +402,16 @@ class EmgClassifierNode(Node):
                 if self.debug >= 1:
                     self.get_logger().error(f"[filter] exception: {e}")
                 return
+            
+        # publish filtered EMG for GUI
+        try:
+            filtered_msg = Float32MultiArray()
+            filtered_msg.data = x.astype(np.float32).tolist()
+            self.pub_filtered.publish(filtered_msg)
+        except Exception as e:
+            if self.debug >= 1:
+                self.get_logger().warn(f"[filtered publish] exception: {e}")
+                
 
         # push into ring buffer (expects (N, ch), (N,))
         try:
@@ -407,11 +434,22 @@ class EmgClassifierNode(Node):
         if not self._infer_enabled:
             assert self._first_sample_time is not None
             remain = self.warmup_sec - (_ros_time_sec(self) - self._first_sample_time)
+
             if remain > 0.0:
+                remain_sec = int(np.ceil(remain))
+
+                if self._last_warmup_pub_sec != remain_sec:
+                    self.publish_warmup_remaining(remain_sec)
+                    self._last_warmup_pub_sec = remain_sec
+
                 if self.debug >= 1 and (abs(remain - round(remain)) < 0.05 or remain < 1.0):
                     self.get_logger().info(f"[warmup] waiting {remain:.1f}s")
+
                 return
+
             self._infer_enabled = True
+            self.publish_warmup_remaining(0)
+
             if self.debug >= 1:
                 self.get_logger().info("[warmup] done; inference enabled")
 
@@ -487,7 +525,6 @@ class EmgClassifierNode(Node):
 
             self._pub_count += 1
             if self.debug >= 1:
-                # confirm/hold debug info is useful for your “3연속 + 0.8s 유지” 확인
                 self.get_logger().info(
                     f"[pub] final={label} conf={conf*100:.1f}% "
                     f"(raw={st.raw_pred}:{st.raw_conf*100:.1f}%, confirm={st.confirm_count}, hold_rem={st.hold_remaining_hops})"
@@ -509,7 +546,7 @@ def main(args=None) -> None:
             node.destroy_node()
         except Exception:
             pass
-        # Jazzy에서 "already shutdown" 튀는 경우가 있어서 예외 삼킴
+
         try:
             rclpy.shutdown()
         except Exception:

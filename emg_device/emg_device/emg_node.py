@@ -8,7 +8,7 @@ from collections import deque
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, QoSHistoryPolicy, QoSReliabilityPolicy
-from std_msgs.msg import Float32MultiArray, Float32
+from std_msgs.msg import Float32MultiArray, Float32, String
 
 from bleak import BleakScanner, BleakClient
 
@@ -72,6 +72,12 @@ class EmgBleNode(Node):
         self.per_ch_prefix = prefix_param if prefix_param else (self.topic + '/data')
         self.per_ch_decim  = max(1, int(self.get_parameter('per_channel_decimation').get_parameter_value().integer_value))
 
+        # --- GUI 10s  ---
+
+        self.ble_status_pub = self.create_publisher(String, '/emg/right/ble_status', 10)
+        self.publish_ble_status("idle")
+
+
         # --- QoS ---
         qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=qdepth,
                          reliability=QoSReliabilityPolicy.RELIABLE)
@@ -111,6 +117,7 @@ class EmgBleNode(Node):
         self.loop.run_forever()
 
     async def _find_device_address(self) -> Optional[str]:
+        self.publish_ble_status("scanning")
         self.get_logger().info('Scanning BLE devices...')
         devices = await BleakScanner.discover(timeout=5.0)
         if self._log_found:
@@ -139,6 +146,8 @@ class EmgBleNode(Node):
                 if not getattr(self.client, "is_connected", False):
                     self.get_logger().error('BLE connect failed. Retry...')
                     await asyncio.sleep(2.0); continue
+                
+                self.publish_ble_status("connected")
 
                 # optional service/char validation
                 try:
@@ -165,8 +174,10 @@ class EmgBleNode(Node):
                     await asyncio.sleep(1.0)
 
                 self.get_logger().warn('BLE disconnected.')
+                self.publish_ble_status("disconnected")
             except Exception as e:
                 self.get_logger().error(f'BLE error: {e}')
+                self.publish_ble_status("error")
             finally:
                 try:
                     if self.client:
@@ -202,6 +213,11 @@ class EmgBleNode(Node):
                         msg = Float32()
                         msg.data = float(v)
                         self.pub_ch[i].publish(msg)
+
+    def publish_ble_status(self, status: str):
+        msg = String()
+        msg.data = status
+        self.ble_status_pub.publish(msg)
 
     def destroy_node(self):
         self._stop = True

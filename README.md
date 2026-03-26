@@ -177,6 +177,8 @@ $ ros2 run so101 so101_real_control_right
 
 ## ✨ NEW ✨  Control GUI
 
+### package name: emg_system_gui 📂
+
 ### 1. EMG GUI
 
 ``` bash
@@ -190,12 +192,12 @@ $ python -m emg_system_gui.emg_system_gui
 ### 2. Integrated EMG + IMU GUI
 
 ``` 
-짜잔~ 아직이지롱
+"짜잔" 준비 중 ...
 
 GT━━━┓
 ┓┓┓┓┓┃/ . `
 ┓┓┓┓┓ : .＼○ノ (와장창)
-┓┓┓┓┓┃ ` / 　　 돔황
+┓┓┓┓┓┃ ` / 　　 Run !
 ┓┓┓┓┓┃ `ノ) . `
 ┓┓┓┓┓┃ ,
 ┓┓┓┓┓┃　　　 　○
@@ -242,6 +244,10 @@ If you have any other questions, feel free to email me anytime ~!~!~! 😎
 3. Start Isaac Sim and click **Play**.
 4. Run the `so101` node (connects Isaac Sim to the EMG device).
 5. Run the `so101_real_control` node (controls the real robot).
+
+### System GUI
+
+1. working ...... `>__<`
 
 <br/>
 

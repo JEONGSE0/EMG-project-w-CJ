@@ -57,9 +57,9 @@ class MainWindow:
         self.ui.label_left_gesture.setText("-")
 
         if hasattr(self.ui, "label_speed_right"):
-            self.ui.label_speed_right.setText("1.0")
+            self.ui.label_speed_right.setText("0.10")
         if hasattr(self.ui, "label_speed_left"):
-            self.ui.label_speed_left.setText("1.0")
+            self.ui.label_speed_left.setText("0.10")
 
     def init_graphs(self):
         pg.setConfigOptions(antialias=False)
@@ -93,7 +93,6 @@ class MainWindow:
             self._setup_single_plot(right_plot, "")
             self._setup_single_plot(left_plot, "")
 
-            # 기존 레이아웃이 있으면 제거 없이 새 레이아웃 생성 시 경고 날 수 있어서 체크
             if right_widget.layout() is None:
                 right_layout = QVBoxLayout(right_widget)
                 right_layout.setContentsMargins(0, 0, 0, 0)

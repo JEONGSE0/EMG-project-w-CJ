@@ -8,7 +8,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 
-from std_msgs.msg import String, Int32
+from std_msgs.msg import String, Int32, Float32, Bool
 from sensor_msgs.msg import JointState
 
 # ---------------- Names & utils ----------------
@@ -156,6 +156,26 @@ class HandNode(Node):
         if self.use_string:
             self.sub_str = self.create_subscription(String, self.gstr_topic, self._on_gesture_str, qos)
 
+        self.pub_current_speed = self.create_publisher(
+            Float32,
+            "/so101/right/current_speed",
+            10,
+        )
+
+        self.sub_speed_delta = self.create_subscription(
+            Float32,
+            "/so101/right/speed_delta",
+            self._on_speed_delta,
+            10,
+        )
+
+        self.sub_reset_gui = self.create_subscription(
+            Bool,
+            "/so101/right/reset",
+            self._on_reset_gui,
+            10,
+        )
+
         # ---- state ----
         self.msg = JointState()
         self.msg.name = JOINT_NAMES
@@ -169,12 +189,9 @@ class HandNode(Node):
         self.emg_enabled = True
         self._kb_active_until = 0.0
 
-        # ✅ Gripper toggle state
-        # start OPEN (100 deg)
         self._gripper_is_closed = False
         self._gripper_target_deg = 100.0
 
-        # ✅ for edge-detect of FIST (rising edge)
         self._prev_idx_for_toggle = None
 
         # ---- keyboard ----
@@ -202,6 +219,8 @@ class HandNode(Node):
             f" EMG mode: {self.emg_enabled} | vmax(rad/s): {self.vmax:.3f} (~{deg_per_sec:.2f} deg/s)\n"
             f" Keyboard hold timeout: {self.kb_hold_timeout:.2f}s"
         )
+
+        self._publish_current_speed()
 
     # ---------- helpers ----------
     def _shutdown(self):
@@ -231,6 +250,7 @@ class HandNode(Node):
         self.vmax = float(np.clip(self.vmax + direction * self.vmax_step, self.vmax_min, self.vmax_max))
         deg_per_sec = self.vmax * 180.0 / math.pi
         self.get_logger().info(f"vmax(rad/s) = {self.vmax:.3f} (~{deg_per_sec:.2f} deg/s)")
+        self._publish_current_speed()
 
     def _apply_increment(self, joint_name: str, direction: float):
         i = JOINT_NAMES.index(joint_name)
@@ -264,6 +284,24 @@ class HandNode(Node):
         self._last_cmd_time = now
         self._last_idx = int(idx)
         self._kb_active_until = now + self.kb_hold_timeout
+
+    def _publish_current_speed(self):
+        msg = Float32()
+        msg.data = float(self.vmax)
+        self.pub_current_speed.publish(msg)
+
+    def _on_speed_delta(self, msg: Float32):
+        delta = float(msg.data)
+        self.vmax = float(np.clip(self.vmax + delta, self.vmax_min, self.vmax_max))
+        deg_per_sec = self.vmax * 180.0 / math.pi
+        self.get_logger().info(f"[GUI] vmax(rad/s) = {self.vmax:.3f} (~{deg_per_sec:.2f} deg/s)")
+        self._publish_current_speed()
+
+    def _on_reset_gui(self, msg: Bool):
+        if not msg.data:
+            return
+        self._set_all_zero()
+        self._publish_current_speed()
 
     # ---------- inputs ----------
     def _handle_keys(self):
